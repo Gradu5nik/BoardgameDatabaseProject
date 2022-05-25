@@ -1,0 +1,10 @@
+﻿@model List<Boardgame>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Boardgames</h1>
+@foreach (var item in Model)
+{
+    <p>@item.Owner has @item.Name, up to @item.MaxPlayers can play it</p>
+}
