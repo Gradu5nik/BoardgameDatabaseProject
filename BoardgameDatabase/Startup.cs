@@ -30,6 +30,9 @@ namespace BoardgameDatabase
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("IdentityDb")));
+            services.AddDbContext<BoardgameDBContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("BoardgameDb")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

@@ -10,12 +10,12 @@ namespace BoardgameDatabase.Controllers
 {
     public class BoardgameController : Controller
     {
-        public static List<Boardgame> data = new List<Boardgame>() { 
-            new Boardgame(){Id=1,Name="Kemet",Owner="Gosha",Keeper="Valera",MaxPlayers=4,MinPlayers=2,ForSale=false,Tags=new List<string>(){"strategy","area controll"} },
-            new Boardgame(){Id=2,Name="Dune",Owner="Gosha",Keeper="Gosha",MaxPlayers=6,MinPlayers=2,ForSale=false,Tags=new List<string>(){"strategy","area controll","diplomacy"} }
-        }; 
-        // GET: BoardgameController
-        public ActionResult Index()
+        public static List<Boardgame> data = new List<Boardgame>() {
+            new Boardgame() { Id = 1,Name ="Kemet",Owner = "Gosha",Keeper = "Gosha",MaxPlayers = 4,MinPlayers = 2,ForSale = false,Tags = new List<string>() {"strategy","area controll"} },
+            new Boardgame() { Id = 2,Name = "Dune",Owner = "Gosha",Keeper = "Gosha",MaxPlayers = 6,MinPlayers = 2,ForSale = false,Tags = new List<string>() { "strategy", "area controll", "diplomacy" } }
+        };
+    // GET: BoardgameController
+    public ActionResult Index()
         {
             return View(data);
         }

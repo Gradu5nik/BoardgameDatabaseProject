@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardgameDatabase", "BoardgameDatabase\BoardgameDatabase.csproj", "{13F6FED0-3490-4450-903A-D4A0EAA322E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardgameDatabase", "BoardgameDatabase\BoardgameDatabase.csproj", "{13F6FED0-3490-4450-903A-D4A0EAA322E6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BoardgameDB", "..\BoardgameDB\BoardgameDB\BoardgameDB.sqlproj", "{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{13F6FED0-3490-4450-903A-D4A0EAA322E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13F6FED0-3490-4450-903A-D4A0EAA322E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13F6FED0-3490-4450-903A-D4A0EAA322E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430FBA74-6272-4E4A-B2CB-2A6E9930C48D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
