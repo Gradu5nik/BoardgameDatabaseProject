@@ -11,6 +11,7 @@ namespace BoardgameDatabase
 {
     public partial class Boardgame
     {
+        #region Properties
         [Key]
         public int Id { get; set; }
         [Required]
@@ -47,16 +48,29 @@ namespace BoardgameDatabase
             set
             {
                 TagText = String.Join(',', value);
-                //_tags = value;
-                //ConvertTags();
 
             }
         }
-        //private List<string> _tags;
-        ////Method that converts tag list back to tags
-        //private void ConvertTags()
-        //{
-        //    TagText=String.Join(',', _tags);
-        //}
+
+        #endregion
+        #region Constructror
+
+        public Boardgame()
+        {
+
+        }
+
+        public Boardgame(string name, string owner, string keeper, int minPlayers, int maxPlayers, string tagText, bool forSale)
+        {
+            Name = name;
+            Owner = owner;
+            Keeper = keeper;
+            MinPlayers = minPlayers;
+            MaxPlayers = maxPlayers;
+            TagText = tagText;
+            ForSale = forSale;
+        }
+
+        #endregion
     }
 }

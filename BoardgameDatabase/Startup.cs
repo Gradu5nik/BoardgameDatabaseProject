@@ -1,4 +1,5 @@
 using BoardgameDatabase.Data;
+using BoardgameDatabase.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,8 @@ namespace BoardgameDatabase
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("IdentityDb")));
@@ -34,6 +37,8 @@ namespace BoardgameDatabase
                 options.UseSqlServer(
                     Configuration.GetConnectionString("BoardgameDb")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddTransient<EFRepoService, EFRepoService>();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -66,7 +71,7 @@ namespace BoardgameDatabase
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");//default route value
+                    pattern: "{controller=Boardgame}/{action=Index}/{id?}");//default route value
                 endpoints.MapRazorPages();//razor pages seem to have their own mapping which you should keep in mind to avoid conflicts
             });
         }

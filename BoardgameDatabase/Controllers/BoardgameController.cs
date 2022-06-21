@@ -5,41 +5,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BoardgameDatabase.Models;
+using BoardgameDatabase.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BoardgameDatabase.Controllers
 {
     public class BoardgameController : Controller
     {
-        public static List<Boardgame> data = new List<Boardgame>() {
-            new Boardgame() { Id = 1,Name ="Kemet",Owner = "Gosha",Keeper = "Gosha",MaxPlayers = 4,MinPlayers = 2,ForSale = false,Tags = new List<string>() {"strategy","area controll"} },
-            new Boardgame() { Id = 2,Name = "Dune",Owner = "Gosha",Keeper = "Gosha",MaxPlayers = 6,MinPlayers = 2,ForSale = false,Tags = new List<string>() { "strategy", "area controll", "diplomacy" } }
-        };
-    // GET: BoardgameController
-    public ActionResult Index()
+        private EFRepoService _service;
+       
+        public BoardgameController(EFRepoService service)
         {
+            _service = service;
+            
+        }
+        #region BoardgameActions
+        // GET: BoardgameController
+        public ActionResult Index()
+        {
+            List<Boardgame> data = _service.GetBoardgames();
             return View(data);
         }
 
         // GET: BoardgameController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Boardgame data = _service.GetBoardgameById(id);
+            return View(data);
         }
 
         // GET: BoardgameController/Create
         public ActionResult Create()
         {
+            List<SelectListItem> people = new List<SelectListItem>();
+
+            foreach (var adress in _service.GetAdresses())
+            {
+                people.Add(new SelectListItem(adress.ToString(), adress.Name));
+            }
+            ViewBag.People = people;
             return View();
         }
 
         // POST: BoardgameController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Boardgame boardgame)
         {
+            
             try
             {
-                return RedirectToAction(nameof(Index));
+                _service.AddBoardgame(boardgame);
+                return RedirectToAction(nameof(Index)) ;
             }
             catch
             {
@@ -50,16 +67,24 @@ namespace BoardgameDatabase.Controllers
         // GET: BoardgameController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Boardgame data = _service.GetBoardgameById(id);
+            List<SelectListItem> people = new List<SelectListItem>();
+            foreach (var adress in _service.GetAdresses())
+            {
+                people.Add(new SelectListItem(adress.ToString(), adress.Name));
+            }
+            ViewBag.People = people;
+            return View(data);
         }
 
         // POST: BoardgameController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Boardgame boardgame)
         {
             try
             {
+                _service.UpdateBoardgame(boardgame);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -71,7 +96,8 @@ namespace BoardgameDatabase.Controllers
         // GET: BoardgameController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Boardgame data = _service.GetBoardgameById(id);
+            return View(data);
         }
 
         // POST: BoardgameController/Delete/5
@@ -81,6 +107,7 @@ namespace BoardgameDatabase.Controllers
         {
             try
             {
+                _service.DeleteBoardgame(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -88,5 +115,6 @@ namespace BoardgameDatabase.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

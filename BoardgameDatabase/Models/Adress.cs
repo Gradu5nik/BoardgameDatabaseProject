@@ -15,7 +15,7 @@ namespace BoardgameDatabase
             BoardgameKeeperNavigations = new HashSet<Boardgame>();
             BoardgameOwnerNavigations = new HashSet<Boardgame>();
         }
-
+        #region Properties
         [Key]
         [StringLength(50)]
         public string Name { get; set; }
@@ -36,5 +36,13 @@ namespace BoardgameDatabase
         public virtual ICollection<Boardgame> BoardgameKeeperNavigations { get; set; }
         [InverseProperty(nameof(Boardgame.OwnerNavigation))]
         public virtual ICollection<Boardgame> BoardgameOwnerNavigations { get; set; }
+        #endregion
+
+        public override string ToString()
+        {
+            return $"{Name} - {Street}, {City}, {Country}, {PostCode}";
+        }
+
+
     }
 }
