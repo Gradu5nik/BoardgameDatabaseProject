@@ -1,17 +1,16 @@
-name: Build and deploy .NET Core app to Windows WebApp BoardgameDatabase20220525201741
+name: Build and deploy .NET Core application to Web App BoardgameDatabase20220622033636
 on:
   push:
     branches:
-    - master
+    - develop
 env:
-  AZURE_WEBAPP_NAME: BoardgameDatabase20220525201741
-  AZURE_WEBAPP_PACKAGE_PATH: BoardgameDatabase/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.BoardgameDatabase20220525201741_3569 }}
+  AZURE_WEBAPP_NAME: BoardgameDatabase20220622033636
+  AZURE_WEBAPP_PACKAGE_PATH: BoardgameDatabase\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
   WORKING_DIRECTORY: BoardgameDatabase
 jobs:
-  build-and-deploy:
+  build:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -31,8 +30,8 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.BOARDGAMEDATABASE20220622033636_FFFF }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
     - name: Publish Artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
