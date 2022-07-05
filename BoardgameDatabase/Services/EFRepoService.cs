@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BoardgameDatabase.Services
 {
-    public class EFRepoService
+    public class EFRepoService:IRepoService
     {
         private BoardgameDBContext context;
         public EFRepoService(BoardgameDBContext service)
@@ -32,7 +32,7 @@ namespace BoardgameDatabase.Services
             Boardgame boardgame = context.Boardgames.Find(id);
             return boardgame;
         }
-        public List<Boardgame> GetBoardgames()
+        public IEnumerable<Boardgame> GetBoardgames()
         {
             return context.Boardgames.ToList();
         }
